@@ -8,7 +8,7 @@ namespace ECommerce.Api.Products.Tests
         [Fact]
         public void Test1()
         {
-            Assert.True(1 > 0);
+            Assert.True(1 < 0);
         }
     }
 }
