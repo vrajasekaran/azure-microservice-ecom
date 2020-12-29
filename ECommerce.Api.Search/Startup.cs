@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Polly;
 
 namespace ECommerce.Api.Search
 {
@@ -31,7 +32,8 @@ namespace ECommerce.Api.Search
             services.AddHttpClient("OrdersService", config =>
             {
                 config.BaseAddress = new Uri(Configuration["Services:Orders"]);
-            });
+            }).AddTransientHttpErrorPolicy(p=>p.WaitAndRetryAsync(5, _=> TimeSpan.FromSeconds(1)));
+
             services.AddControllers();
         }
 
