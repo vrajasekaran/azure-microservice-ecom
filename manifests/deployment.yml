@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: vrajasekaranazuremicroserviceecom 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vrajasekaranazuremicroserviceecom
+  template:
+    metadata:
+      labels:
+        app: vrajasekaranazuremicroserviceecom 
+    spec:
+      containers:
+        - name: vrajasekaranazuremicroserviceecom 
+          image: dmmsacr.azurecr.io/vrajasekaranazuremicroserviceecom
+          ports:
+          - containerPort: 80
